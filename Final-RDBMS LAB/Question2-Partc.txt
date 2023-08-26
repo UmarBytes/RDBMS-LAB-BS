@@ -1,0 +1,28 @@
+
+1. Write a sql statement to find the maximum salary, minimum salary and original salary of the employee. Use
+appropriate column aliasing.
+
+SELECT MIN(salary) AS "Min Salary", MAX(salary) AS "Max SAlary", salary "ORiginao Salalry" FROM employees
+
+2. Owner of the company wants to know the average salaries per role. Write a sql statement that will show column 
+“average salary”, “role”. 
+
+SELECT AVG(salary) AS "average salary", name FROM `employees` NATURAL JOIN roles ORDER by name
+
+3. Write a sql statement to show data of those employees who have “J” at start.
+
+SELECT * FROM `employees` WHERE name LIKE "j%"
+
+
+4. Create a view that will shows the employee id, employee name, department name
+
+->CREATE VIEW empDetail AS
+SELECT id, name, department FROM `employees` WHERE 1
+
+->CREATE VIEW empDetail AS
+SELECT e.id, e.name, d.name FROM `employees` e JOIN departments d ON (e.id = d.id);
+
+5.Write a sql statement that will display the first three letters of the department name
+
+SELECT SUBSTR(name,1,3) FROM `departments` 
+

@@ -1,0 +1,43 @@
+//CREATE VIEW
+create view view1 as 
+select ename, dname , job from emp natural join dept;  
+
+//retrive data from view
+select * from view1;
+
+create view view2
+as select * from emp;
+
+//drop a view
+drop view view2;
+
+//alter view
+alter view view1
+as select dname , job from emp natural join dept;  
+
+//
+show privileges
+show databases
+
+1. Create a view which will display name of department,
+employee name , department number for the department 20.
+
+create view dept20
+as select dname, ename, deptno from emp natural join dept
+where detno = 20;
+
+2. Create a view which will display name of department,
+employee name , department number for the department 20
+and name of employees starting with c.
+
+create view dept20
+as select dname, ename, deptno from emp natural join dept
+where detno = 20 and ename like "c%";
+
+3. Alter above view which will display name of department,
+employee name , department number for the department research or 
+operations or sale and name of employees starting with c.
+
+alter view dept20
+as select dname, ename, deptno from emp natural join dept
+where deptname in("research", "operations", "sale") and ename like "c%";

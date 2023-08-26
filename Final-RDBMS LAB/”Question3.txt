@@ -1,0 +1,8 @@
+project Name: project-b16c7
+->Name of the collections: there are two collections: User
+(in firebase collections are same like tablename in sql)
+->documents are: user1 and User2
+(documents are same like rows in the sql)
+
+
+the key's are id name and phone and the values against the keys are  2, ahmed and 90078601

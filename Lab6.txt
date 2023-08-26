@@ -1,0 +1,99 @@
+//creating database
+create database lab6;
+
+//create table employees
+create table employees(
+    e_id int,
+    f_name varchar(30),
+    l_name varchar(30),
+    age int,
+    phone numeric
+); 
+________________________________________________________________
+// constraints at coluumn level 
+create table product(
+    p_id int primary key,
+    p_name varchar(25) unique,
+    p_color varchar(30) not null,
+    p_expiry date
+);
+
+//constraints at-table level
+create table department(
+    d_id int,
+    d_name varchar(25),
+    d_location varchar(30),
+    d_zip varchar(20),
+    primary key(d_id),
+    unique(d_zip)
+);
+
+//foreign key
+alter table employees
+add column d_id int
+
+//foreign key
+alter table employees
+add foreign key(d_id) references department(d_id)
+--use correct table name
+--use matching data types for columns
+
+//foreign key with constraint name[from table employees to products]
+alter table products
+add coulumn e_id int
+add constraint eid_fk foreign key(e_id) references employees(e_id)  
+
+//dropping foreign key
+alter table employees
+drop CONSTRAINT employees_ibfk_1
+
+//drop primary key
+alter table product
+drop primary key
+_________________________________________________________________
+//composite keys
+create table dept(
+    d_id int,
+    d_name varchar(25),
+    d_location varchar(30),
+    d_zip varchar(20),
+    primary key(d_id,d_name),
+    unique(d_zip,d_location)
+);
+_________________________________________________________________
+//default-value
+alter table department
+alter column d_name set DEFAULT "Ahmed";
+
+//drop default-value
+alter table department
+alter column d_name drop DEFAULT; 
+________________________________________________________________
+//renaming table 
+RENAME table department to departments
+or
+alter table departments
+RENAME to dep
+________________________________________________________________
+//renaming the column
+alter table dept
+change COLUMN d_id deptid int
+_____________________________________________________________
+alter table dept
+change COLUMN deptid d_id [won't work, don't use rename keyword]
+_________________________________________________________________
+//changing data type of a column
+alter table employees
+modify column l_name int
+_________________________________________________________________
+//retrieving data
+select * from employees;
+________________________________________________________________
+drop table 
+drop table dept
+_______________________________________________________________
+//truncate table
+truncate table employees
+________________________________________________________________
+//delete from employees
+delete * from employees

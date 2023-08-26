@@ -1,0 +1,121 @@
+CREATE TABLE `employees` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `department` varchar(255) NOT NULL,
+ `salary` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `departments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `employee_roles` (
+  `employee_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`employee_id`, `role_id`),
+  CONSTRAINT `fk_employee_roles_employees` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_employee_roles_roles` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `department_employees` (
+  `department_id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  PRIMARY KEY (`department_id`, `employee_id`),
+  CONSTRAINT `fk_department_employees_departments` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_department_employees_employees` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `projects` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `project_employees` (
+  `project_id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  PRIMARY KEY (`project_id`, `employee_id`),
+  CONSTRAINT `fk_project_employees_projects` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_project_employees_employees` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tasks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `due_date` date NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `project_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_tasks_projects` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE
+);
+
+-- Inserting data into the employees table
+INSERT INTO employees (name, email, phone, address, department,salary) VALUES 
+  ('John Doe', 'johndoe@email.com', '123-456-7890', '123 Main St', 'Sales',50000),
+  ('Jane Smith', 'janesmith@email.com', '555-555-5555', '456 Elm St', 'Marketing',25555),
+  ('Bob Johnson', 'bobjohnson@email.com', '111-111-1111', '789 Oak St', 'Engineering',12545);
+
+-- Inserting data into the departments table
+INSERT INTO departments (name) VALUES 
+  ('Sales'),
+  ('Marketing'),
+  ('Engineering');
+
+-- Inserting data into the roles table
+INSERT INTO roles (name) VALUES 
+  ('Manager'),
+  ('Developer'),
+  ('Sales Rep');
+
+-- Inserting data into the employee_roles table
+INSERT INTO employee_roles (employee_id, role_id) VALUES 
+  (1, 1),
+  (2, 1),
+  (3, 2),
+  (1, 3);
+
+-- Inserting data into the department_employees table
+INSERT INTO department_employees (department_id, employee_id) VALUES 
+  (1, 1),
+  (2, 2),
+  (3, 3),
+  (3, 1);
+
+-- Inserting data into the projects table
+INSERT INTO projects (name, description, start_date, end_date) VALUES 
+  ('Website redesign', 'Redesigning company website', '2023-05-01', '2023-08-31'),
+  ('Product launch', 'Launching new product line', '2023-07-01', '2023-12-31'),
+  ('Database migration', 'Migrating database to new platform', '2023-06-01', '2023-09-30');
+
+-- Inserting data into the project_employees table
+INSERT INTO project_employees (project_id, employee_id) VALUES 
+  (1, 1),
+  (1, 2),
+  (2, 2),
+  (2, 3),
+  (3, 1),
+  (3, 3);
+
+-- Inserting data into the tasks table
+INSERT INTO tasks (name, description, due_date, status, project_id) VALUES 
+  ('Design new homepage', 'Create mockups and wireframes for new homepage design', '2023-05-31', 'In progress', 1),
+  ('Write product specs', 'Document requirements and specs for new product line', '2023-07-31', 'Not started', 2),
+  ('Set up new database', 'Configure and set up new database platform', '2023-08-31', 'In progress', 3),
+  ('Create API endpoints', 'Develop and test API endpoints for new product line', '2023-10-31', 'Not started', 2);
+

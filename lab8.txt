@@ -1,0 +1,102 @@
+-------------------------------------------------------------------
+//concatenation
+select concat("Ahmed","SE",2021458);
+
+//concatenating columns
+select concat(empno,ename,job) from emp;
+------------------------------------------------------------------
+1. Write a query to Concat department number,name and location and 
+label the name of column as "Department Details".
+
+select concat(deptno,dname,loc) as "Department Details" from dept;
+//Literals
+select "Ahmed", 1 , SE, 2017;
+select concat("Employee ", ename, " is working as ", job ) 
+as "Employee Details" from emp;
+
+3. Modify above query and add hiredate too. 
+select concat("Employee ", ename, " is working as ", job , " was hired on ", hiredate) 
+as "Employee Details" from emp;
+-----------------------------------------------------------------
+//Duplicate Rows
+4.Select Department number from table of employees.
+select deptno from emp;
+-----------------------------------------------------------------
+//distinct keyword
+select distinct deptno from emp;
+
+5.Display distinct department number and job of employee
+select distinct deptno,job from emp;
+-----------------------------------------------------------------
+//where clause
+6. As a database expert you are asked to display data of 
+employees working as clerk by your client. Write query to execute
+above task.
+select * from emp where job = "CLERK";
+----------------------------------------------------------------
+7. Display data of employees who were hired in 1980-12-17.
+
+//Conditions
+select ename, sal from emp where sal>=3000;
+select ename, sal from emp where sal<=3000;
+select ename, sal from emp where sal=3000;
+
+8. Display data of employees who were hired after 1980-12-17.
+select * from emp where hiredate > "1980-12-17";
+
+//between 
+9. Employees having salary between 1250 and 3000.
+between 1250 and 3000[use lower limit first]
+
+select * from emp where sal between 1250 and 3000;
+
+//In(1250,3000)
+select * from emp where sal in(1250,3000);
+
+10. Employees between allen and turner;
+select * from emp where ename between "ALLEN" and "TURNER";
+select * from emp where ename between "KING" and "SMITH";
+------------------------------------------------------------------
+//WildCards(%,_)
+like keyword
+select ename from emp where ename like "s%";
+select ename from emp where ename like "%s";
+select ename from emp where ename like "%s%";
+
+select * from emp where ename like  "_____";[5 underscores]
+
+11.Display name of employees having name length 5 and starts with j;
+select ename from emp where ename like "j____";
+------------------------------------------------------------------
+//Null Conditions 
+12.Display employees having null commision.
+select * from emp where comm is not null;
+[select * from emp where comm !=null;]
+
+13.Display employees earning commision.
+select * from emp where comm is not null;
+
+------------------------------------------------------------------
+//OR operator
+14.Display data of employees having department number 10 or 20.
+select * from emp where deptno = 10 or deptno=20;
+
+//Not operator
+15. Display employees who are not working as salesman and clerk. 
+select * from emp where job not in("salesman","clerk");
+
+//And operator
+select * from emp where job != "salesman" and job != "clerk";
+-----------------------------------------------------------------
+Order-By Clause
+select * from emp order by sal desc;
+select * from emp order by sal asc; [by-default]
+-----------------------------------------------------------------
+Retrieving Data From Multiple Tables
+//cartesian product
+select ename, empno , dname from emp,dept
+
+//Natural Join
+
+
+

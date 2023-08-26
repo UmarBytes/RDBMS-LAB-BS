@@ -1,0 +1,67 @@
+//cartesian product
+//(1,0)(0,1) = (1,0)(1,1)(0,0)(0,1)
+select department_name,city 
+from departments,locations
+
+//using table names to avoid ambuiguity
+select departments.department_name, departments.location_id, 
+locations.city from departments,locations;
+
+//select department_name,city,location_id 
+from departments,locations[ambuiguity-error]
+
+//Natural Joins
+select department_name, location_id, city 
+from departments natural join locations
+
+1. Display employee id, employee name, department name , department id
+of those employees working in "marketing" department.
+
+select employee_id, first_name, department_id,
+department_name from departments natural join employees 
+where department_name = "marketing";
+
+2. Display name of employees , their department name and the city where they are working.
+
+select first_name, last_name, department_name, city from employees natural join departments natural join locations;
+
+3. Display name of employees , their department name and the city working in seattle.
+
+select first_name, last_name, department_name, city from employees natural join 
+departments natural join locations where city = "Seattle";
+
+//using clause
+select department_name, location_id, city from departments join locations using(location_id);
+
+//wrong
+select department_name, location_id, city from departments join locations using(locations.location_id);
+
+//
+select employee_id, first_name, department_name from departments join employees using(department_id);
+select employee_id, first_name, department_name from departments join employees using(manager_id);
+
+//qualifiers[table name]
+select departments.department_name, departments.location_id, 
+locations.city from departments,locations;
+
+//qualifier[alias]
+select d.department_name, d.location_id,
+l.city from departments d natural join locations l;
+
+//on-clause
+select e.first_name , e.last_name, d.department_id , d.department_name from employees e join departments  d
+on d.department_id = e.department_id;
+
+4. Display city, region and country name of the employees.
+select city, region_name , country_name from locations natural join countries natural join regions
+//on-clause [AND , &&]
+
+5. select locations.*, region_name , country_name from locations natural join countries natural join regions
+
+//Integration of front-end with DB
+
+
+
+
+
+

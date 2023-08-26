@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+</head>
+<body>
+    <div class="container">
+    <form action="inserbook.php" method="post">
+        Book Name:
+        <input type="text" name="bookname" id="bookname" placeholder="Enter name of Book">
+        <br>
+        Book Author:
+        <input type="text" name="bookauthor" id="bookauthor" placeholder="Enter the name of the bookauthor">
+        <br>
+        Book Price:
+        <input type="text" name="price" id="price" placeholder="Enter the book price">
+        <br>
+        Issue Date: 
+        <input type="date" name="date" id="date">
+        <br>
+        <input type="submit" value="SUBMIT" value="Add Book">
+    </form>
+</div>
+</body>
+</html>
+
+<style>
+    .container{
+        display: flex;
+        color: aliceblue;
+        /* align-items: center; */
+        align-items: center;
+        text-align: center;
+        padding-left: 35%;
+        background-image: url(masrk.PNG);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 200PX;
+        
+    }
+</style>

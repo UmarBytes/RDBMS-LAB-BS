@@ -1,0 +1,94 @@
+//round
+select round(423.56)
+select round(423.56,0)
+select round(423.56,1)
+select round(423.56,-1)
+select round(sal) from emp;
+
+//truncate
+select truncate(423.56)[won't run]
+select truncate(423.56,0)
+select truncate(423.56,1)
+select truncate(423.56,-1)
+
+//mod
+select mod(sal,5) from emp;
+
+//NVL Function
+select sal, comm, sal+nvl(comm,0) as "total salary" from emp
+select nvl(comm,0) from emp;
+
+
+//Group-Functions
+//average
+select avg(sal) from emp;
+select avg(all sal) from emp;
+select avg(distinct sal) from emp;
+
+//maximum
+select max(sal) from emp;
+
+//minimum
+select min(sal) from emp;
+
+//sum
+select sum(sal) from emp;
+1. Select maximum , minimum, average salaries of the employee
+who have "man" in the last of their jobs.
+
+select max(sal), min(sal), avg(sal) from emp where job like
+"%man";
+
+2. Select most junior and senior employees of the company
+
+select max(hiredate) "junior" , min(hire_date)"senior" from emp;
+
+3. Apply max and min functions to ename
+
+select max(ename) , min(ename) from emp;
+
+//count()
+
+select count(*) from emp; [14]
+select count(ename) from emp; [14]
+select count(distinct ename) from emp; [14]
+select count(comm) from emp where deptno = 10;
+select count(distinct comm) from emp; 
+
+//group-by
+select avg(sal) from emp group by deptno;
+
+select deptno, avg(sal) from emp group by deptno;
+
+select deptno,job,avg(sal),sum(sal) from emp group by deptno,job;
+
+select deptno,sal,avg(sal),sum(sal) from emp group by deptno;[incorrect result!]
+
+//order-by with group
+select deptno, avg(sal) from emp group by deptno order by avg(sal) desc;
+
+select deptno, avg(sal) from emp group by deptno order by deptno desc;
+
+//invalid
+select deptno, avg(sal) from emp group by avg(sal)
+
+//
+select deptno, avg(sal) from emp;
+
+//by using group by
+select deptno, avg(sal) from emp group by deptno;
+
+//where condition
+select deptno, avg(sal) from emp where deptno>20 group by deptno;
+
+//Display deptno and average salary of employees
+with averageSal>3000 per department;
+
+select deptno, avg(sal) from emp where avg(sal)>3000 group by deptno;
+
+select deptno, avg(sal) from emp group by deptno where avg(sal)>3000 ;
+
+select deptno, avg(sal) from emp group by deptno having avg(sal)>3000 ;
+
+//one or more column for group function
+select deptno, sum(sal),job from emp where group by deptno,job;

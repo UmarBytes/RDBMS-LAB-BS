@@ -1,0 +1,57 @@
+CREATE TABLE Student(S_name varchar(50), S_Dept varchar(100), S_ID int(100), S_Smester int(10));
+
+
+INSERT INTO students(S_name , S_Dept, S_ID ,S_Smester)
+VALUES('Ashhan' , 'CS' , 201400155, 4);
+
+//Search
+SELECT  S_ID  FROM`students` WHERE S_ID = 201400150; 
+
+//TO find the Row
+SELECT * FROM `students` WHERE S_ID = 201400150;
+
+
+CREATE TABLE Persons(
+	
+    ID int NOT NULL,
+    FirstName varchar(225) NOT NULL,
+    LastName varchar(225) NOT NULL,
+	Age int
+);
+
+
+INSERT INTO persons1(S_name , S_Dept, S_ID ,S_Smester)
+VALUES('Ashhan' , 'CS' , 201400155, 4);
+
+
+CREATE TABLE Orders(
+	
+    Order_ID int NOT NULL, OrderNumber int NOT NULL, 
+    ID int, 
+    PRIMARY KEY(Order_ID),
+    FOREIGN KEY(ID) REFERENCES persons1(ID)
+);
+
+//Drop
+ALTER TABLE students
+ADD Email varchar(225);
+
+//Rename
+AlTER TABLE Customers
+Rename to items;
+
+//Drop a Column
+ALTER TABLE Customers
+Drop Column Email;
+
+//Value delete
+TRUNCATE Table Table_name;
+
+//Data BAse Delete
+TRUNCATE DataBAse Lab-5
+
+
+//Add A Colum
+ALTER TABLE students(
+ADD Email varchar(225) 
+);

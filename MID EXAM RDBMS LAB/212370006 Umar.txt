@@ -1,0 +1,28 @@
+
+//Create a Table
+
+CREATE TABLE producer(producer_id int(2) PRIMARY KEY,
+                      firstname varchar(25) NOT null DEFAULT "abc",
+                      lastname varchar(10) NOT null DEFAULT "XYZ",
+                      email varchar(20) UNIQUE,
+                      phone_no NUMERIC(11) NOT null DEFAULT 00000
+                      
+                     );
+
+
+// Product table
+
+CREATE TABLE product(product_code Numeric(2) PRIMARY KEY,
+                      product_id int,
+                      product_name varchar(10) NOT null,
+                      type varchar(20) NOT null,
+                      
+                     FOREIGN KEY (product_id) REFERENCES producer(producer_id)
+                    
+                     );
+
+
+01) ALTER TABLE producer
+CHANGE phoneNum phoneNo varchar(10) NOT null DEFAULT "000000";
+
+02)

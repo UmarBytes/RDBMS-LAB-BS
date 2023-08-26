@@ -1,0 +1,72 @@
+SQL-Functions
+//Single-Row Functions
+//Case-Manipulation-Functions
+
+select Lower("AHMED");
+select Upper("ahmed");
+
+select lower(ename) from emp;
+select upper(ename) from emp;
+
+//Character-Manipulation-Functions
+concat()
+select concat(eid,ename) from emp;
+
+//substr()
+select substr("Ahmed",1,4);
+select substr("Ahmed",1);
+
+select substr(ename,1,3) from emp;
+
+1. Display first letter of employee name in 
+capital and remaining in small.
+
+select concat(upper(substr(ename,1,1)),lower(substr(ename,2)))
+as Employee_Name from emp;
+
+2. Display last letter of employee name.
+select substr(ename,-1) from emp;
+ 
+//length
+select length("Ahmed");
+
+3.Display length of employees name from the employees table.
+select length(ename) from emp;
+
+//instr()
+
+instr("ahmed","a")
+
+4. Check if name of employees have n in them and return their
+numeric position.
+
+select instr(ename,'n') from emp;
+
+//LPAP
+select LPAD(1000,10,'*');
+select RPAD(1000,5,'$');
+
+5. Insert "$" in salary column of employee.
+select lpad(sal,10,'$') from emp;
+
+//trim
+select trim("H" from "Hello");
+select trim("o" from "Hello");
+
+select trim("h" from "Hello"); [won't trim]
+select trim("l" from "Hello"); [won't trim]
+
+//replace
+select replace(ename, "A","F") from emp; 
+
+7. Display employee names and employee numbers joined together, 
+the length of the employee name, and the numeric position of the
+letter a in the employee name for all employees 
+who have the string MAN contained in the job starting at the 
+sixth position of the job. 
+
+substr(job,6) like "man"
+
+
+
+

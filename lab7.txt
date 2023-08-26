@@ -1,0 +1,103 @@
+//create a databse
+create database hospital;
+
+create a table for doctors
+create table doctor(
+    d_id int primary key,
+    d_name varchar(20) unique,
+    d_department varchar(25),
+    d_hireDate date
+);
+create a table for patient
+create table patient(
+     p_id int primary key,
+     p_name varchar(25),
+     p_symptoms varchar(30),
+     d_id int,
+     foreign key(d_id) references doctor(d_id)
+);
+
+//inserting data into the above tables
+insert into doctor(d_id,d_name,d_department,d_hiredate) 
+values(1,"Umar","Cardiology", "2001-12-05"),
+(2,"Zaryab","Neurology", "2002-12-05"),
+(3,"Kinza","radiology","2001-5-02");
+
+//inserting values while skipping a column[null value]
+insert into doctor(d_id,d_name,d_department) 
+values(4,"Umair","Cardiology")
+
+//if column count doesn't match with values[error]
+insert into doctor(d_id,d_name,d_department) 
+values(4,"Umair")
+
+//inserting values in patient
+INSERT INTO `patient`(`p_id`, `p_name`, `p_symptoms`, `d_id`) 
+VALUES (10, "Rehan","cold",1),(20, "Rehan","bypass",2)
+
+//inserting value in d_id in patient table
+update patient
+set d_id = 4 where p_symptoms = "cold"
+
+update patient
+set d_id = 1; [It will update all rows in d_id]
+
+//updating values in doctor table after removing restrictions
+update doctor
+set d_id = 40 where d_id=4;
+
+//delete row from doctor after removing restrictions
+delete from doctor where d_id = 40;
+
+//truncate table patient
+truncate patient;
+
+//delete table doctor
+delete from doctor;
+
+//drop database
+drop database hospital;
+
+________________________________________________________________________________________________________________________________________________________
+//retrieving data from table
+select * from emp;
+select EMPNO,ENAME,sal from emp;
+
+1.write a query to display data from department table
+select * from dept;
+2.display data from department table having name of department operations
+select * from dept where dname  = "operations"
+
+//using alias[for renaming column's headings]
+select DEPTNO as "Department_No", loc as "location" from dept;
+
+3.Show employee number, employee name from employee table and give suitable
+names to the columns.
+select empno "Employee_No", ename "Employee_Name" from emp;
+
+//Arithmetic-Operations
++
+-
+/
+*
+
+sal sal from emp;
+select ename,sal,sal+100 from emp;
+select ename, sal-100 from emp;
+select ename,sal,sal*0.1 from emp;
+select ename,sal,sal+100,sal-100,sal*0.1,sal/5 from emp;
+select ename, sal+100*20-(10/2) from emp;
+
+4. Increase the salary of those employees by 50 
+who are working in sales department.
+select empno, ename, sal, sal+50 "bonus" from emp where
+job = "salesman" 
+
+//null values
+select comm from emp;
+select comm, comm+100 from emp; 
+___________________________________________________________
+
+
+
+

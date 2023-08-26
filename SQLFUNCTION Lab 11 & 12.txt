@@ -1,0 +1,112 @@
+SELECT SUBSTR(ENAME,1,3), INSTR(ENAME,'M') 
+FROM emp WHERE EMPNO = 7369
+SELECT RPAD(ENAME,20,'_') FROM emp 
+SELECT ENAME,SAL, ROUND(SAL,10) FROM emp 
+---------------------------------------------------
+SELECT DISTINCT(sal), AVG(sal) FROM emp;
+SELECT DISTINCT(sal) FROM emp;
+SELECT AVG(sal) FROM emp;
+SELECT DISTINCT(sal), AVG(sal) FROM emp;
+SELECT MAX(hiredate), MIN(hiredate) FROM emp;
+SELECT COUNT(ename) FROM emp;
+SELECT COUNT(comm) FROM emp;
+SELECT COUNT(sal) FROM emp;
+SELECT COUNT(comm) FROM emp WHERE deptno = 13;
+SELECT COUNT(comm) FROM emp WHERE deptno = 30;
+SELECT COUNT(comm) FROM emp WHERE deptno = 10;
+SELECT COUNT(comm) FROM emp WHERE deptno = 30;
+SELECT DISTINCT(comm) FROM emp WHERE deptno = 30;
+SELECT ifnull(comm,0) FROM emp;
+SELECT avg(sal) FROM emp;
+Expand Requery Edit Explain Profiling Bookmark Database : company Queried time : 9:45:18
+SELECT deptno, avg(sal) FROM emp GROUP by deptno;
+SELECT deptno, avg(sal) FROM emp GROUP by deptno;
+SELECT deptno, sal, avg(sal) FROM emp GROUP by deptno;
+SELECT * FROM `emp`
+SELECT DEPTNO, sum(SAL) FROM emp;
+SELECT DEPTNO, sum(SAL) FROM emp ORDER by SAL;
+SELECT DEPTNO, sum(SAL) FROM emp ORDER by AVG (sal) DESC;
+SELECT DEPTNO, avg(SAL) FROM emp ORDER by AVG (sal) DESC;
+SELECT DEPTNO, avg(SAL) FROM emp GROUP by DEPTNO ORDER by AVG (sal) DESC;
+SELECT DEPTNO, COUNT(SAL) FROM emp GROUP by DEPTNO ORDER by AVG (sal) DESC;
+
+----------------------------------------------
+
+Character Functions:
+SELECT UPPER(column_name) FROM table_name; -- Converts all characters in the column to uppercase
+
+SELECT LOWER(column_name) FROM table_name; -- Converts all characters in the column to lowercase
+
+SELECT INITCAP(column_name) FROM table_name; -- Converts the first letter of each word in the column to uppercase
+
+SELECT LENGTH(column_name) FROM table_name; -- Returns the length of the column (in characters)
+
+Number Functions:
+SELECT ABS(column_name) FROM table_name; -- Returns the absolute value of the column (i.e., removes any negative sign)
+
+SELECT ROUND(column_name, precision) FROM table_name; -- Rounds the column to the specified precision (i.e., number of decimal places)
+
+SELECT TRUNC(column_name, precision) FROM table_name; -- Truncates the column to the specified precision (i.e., removes any decimal places beyond the specified precision)
+
+SELECT MOD(column_name, divisor) FROM table_name; -- Returns the remainder of dividing the column by the specified divisor
+
+Date Functions:
+SELECT SYSDATE FROM dual; -- Returns the current date and time
+
+SELECT MONTHS_BETWEEN(date1, date2) FROM table_name; -- Returns the number of months between two dates
+
+SELECT ADD_MONTHS(date, num_months) FROM table_name; -- Adds the specified number of months to a date
+
+SELECT NEXT_DAY(date, day_of_week) FROM table_name; -- Returns the next occurrence of the specified day of the week after a given date
+
+Conversion Functions:
+SELECT TO_CHAR(column_name, format) FROM table_name; -- Converts the column to a character string using the specified format
+
+SELECT TO_NUMBER(column_name) FROM table_name; -- Converts the column to a number
+
+SELECT TO_DATE(column_name, format) FROM table_name; -- Converts the column to a date using the specified format
+
+General Functions:
+SELECT NVL(column_name, default_value) FROM table_name; -- Returns the column value if it is not null; otherwise, returns the specified default value
+
+SELECT NULLIF(column_name1, column_name2) FROM table_name; -- Returns null if column_name1 = column_name2; otherwise, returns column_name1
+
+SELECT IFNULL(COMM,10)FROM emp;-- Returns the default value if the column value is null
+
+SELECT COALESCE(column_name1, column_name2, ...) FROM table_name; -- Returns the first non-null value among the specified columns
+
+SELECT RPAD('hello', 10, '0');
+SELECT LPAD(SAL, 8,'$') FROM emp THIS IS 
+
+SELECT REPLACE('JACK AND JUE', 'J', 'BL')-- J replace with BL ; output will be black and blue
+
+-----------------------------------------------------
+. Practice SELECT Statements 
+1. Write a query to display the current date. Label the column Date. 
+SELECT CURRENT_DATE AS DATE
+
+2.The HR department needs a report to display the employee number, name, salary, and salary increased by 15.5% (expressed as a whole number) for each employee. Label the column New Salary.
+SELECT EMPNO,ENAME, SAL,  ROUND(SAL * 1.155, 2) AS 'New Salary' FROM emp;
+
+3.Write a SQL query that displays the employee name (with the first letter uppercase and all other letters lowercase) and the length of the last name for all employees whose name starts with the letters J, A, or M. Give each column an appropriate label. Sort the results by the employees’ names. 
+
+SELECT CONCAT(UPPER(LEFT(ENAME, 1)), LOWER(SUBSTRING(ENAME, 2))) AS 'Employee Name', LENGTH(SUBSTRING_INDEX(ENAME, ' ', -1)) AS 'Last Name Length' FROM emp WHERE ENAME LIKE 'S%' OR ENAME LIKE 'A%' OR ENAME LIKE 'W%' ORDER BY ENAME;
+----
+SELECT  concat(upper(substr(ENAME,1,1)), Lower(substr(ENAME,2,10))), length(ENAME)  FROM `emp` WHERE ENAME LIKE "J%" OR ENAME LIKE "A%" OR ENAME LIKE "W%" OR ENAME LIKE "S%"
+lab12
+#LAST QUERES
+1. SELECT JOB, MAX(ROUND( SAL,0)) 'MAXIMUM', MIN(ROUND(SAL,0)) 'MINIMUM', SUM(ROUND(SAL,0)) 'SUM', AVG(ROUND(SAL,-2)) 'AVERAGE'  FROM emp GROUP BY JOB
+2. SELECT MGR, MIN(SAL) AS lowest_salary FROM emp WHERE MGR IS NOT NULL GROUP BY MGR HAVING MIN(SAL) >= 1500 ORDER BY lowest_salary DESC;
+3. SELECT d.DNAME, d.LOC, COUNT(e.ENAME), AVG(e.SAL) FROM dept d JOIN emp e ON d.DEPTNO = d.DEPTNO 
+4. 
+SELECT HIREDATE, COUNT(*) AS Total_Employees
+FROM emp
+UNION ALL SELECT YEAR(HIREDATE) AS DATE, COUNT(*) AS Total_Employees FROM emp WHERE YEAR(HIREDATE) BETWEEN 1980 AND 1983 GROUP BY YEAR(HIREDATE)
+ORDER BY HIREDATE ASC;
+---------------------------------
+PRACTICE PROBLEM LAB#12
+---------------------------------
+SELECT round(MAX(sal)) , round(MIN(SAL)), round(AVG(SAL)), round(SUM(SAL)) FROM `emp` GROUP BY JOB
+
+SELECT  * FROM emp GROUP by JOB
+

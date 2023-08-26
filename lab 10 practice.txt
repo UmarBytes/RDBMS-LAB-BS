@@ -1,0 +1,28 @@
+1. Write a query to display the name, department number, and department name for all employees.
+SELECT e.FIRST_NAME, e.LAST_NAME, e.DEPARTMENT_ID, d.DEPARTMENT_NAME FROM `employees` e JOIN departments d ON(e.EMPLOYEE_ID = d.DEPARTMENT_ID)
+
+2. Create a unique listing of all jobs that are in department 30.
+SELECT DISTINCT JOB_TITLE FROM `jobs` JOIN departments WHERE DEPARTMENT_ID = 30
+
+3. Write a query to display the employee name, department name, location ID, and city of all employees who earn a commission.
+SELECT e.FIRST_NAME,e.COMMISSION_PCT, d.DEPARTMENT_NAME, d.LOCATION_ID, l.city FROM `employees` e JOIN departments d ON(e.DEPARTMENT_ID = d.DEPARTMENT_ID) JOIN locations l ON(d.LOCATION_ID = l.LOCATION_ID) WHERE e.COMMISSION_PCT is NOT null
+4. Display the employee name and department name for all employees who have an A in their last  names.
+SELECT e.FIRST_NAME, e.LAST_NAME, d.DEPARTMENT_NAME FROM employees e JOIN departments d ON (e.DEPARTMENT_ID = d.DEPARTMENT_ID) WHERE e.LAST_NAME LIKE '%A%'
+
+5. Write a query to display the name, department number, and department name for all employees who work in Seattle.
+SELECT e.FIRST_NAME, d.DEPARTMENT_NAME, d.DEPARTMENT_ID FROM employees e JOIN departments d ON (e.DEPARTMENT_ID = d.DEPARTMENT_ID) WHERE d.DEPARTMENT_NAME= 'Seattle'
+
+6. Display the employee name and employee number along with their manager’s name and manager number. Label the columns Employee, Emp#, Manager, and Mgr#, respectively.
+SELECT e.FIRST_NAME as 'EMP#', e.EMPLOYEE_ID, m.MANAGER_ID as 'MGR#' FROM employees e JOIN departments m ON (e.MANAGER_ID = m.MANAGER_ID) 
+
+8. Create a query that displays employee name, department numbers, and all the employees who work in the same department as a given employee. Label the columns Department, Employee, Colleague.
+SELECT e.FIRST_NAME, d.DEPARTMENT_ID, d.DEPARTMENT_NAME FROM employees e JOIN departments d ON (e.DEPARTMENT_ID = d.DEPARTMENT_ID) GROUP by d.DEPARTMENT_NAME 
+
+9. Create a query that displays the name, job title for all employees
+SELECT e.FIRST_NAME, j.JOB_TITLE FROM employees e JOIN jobs j ON (e.JOB_ID = j.JOB_ID)
+
+10. Create a query to display the name, department_name and hire date of all employees
+SELECT e.FIRST_NAME, e.HIRE_DATE, d.DEPARTMENT_NAME FROM employees e JOIN departments d ON (e.DEPARTMENT_ID = d.DEPARTMENT_ID)
+
+11. Write a query to display the name ( first name and last name ), salary, department id, job id for those employees who works in the same designation as the employee works whose id is 169
+SELECT e.FIRST_NAME, e.LAST_NAME, e.SALARY, d.DEPARTMENT_ID, e.JOB_ID FROM employees e JOIN departments d ON (e.DEPARTMENT_ID = d.DEPARTMENT_ID) WHERE e.EMPLOYEE_ID=169
